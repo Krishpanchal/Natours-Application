@@ -28,7 +28,6 @@ const port = process.env.PORT || 3000;
 
 const server = app.listen(port, () => {
   console.log(`App is running of port ${port}...`);
-  console.log(process.env.NODE_ENV);
 });
 
 process.on('unhandledRejection', (err) => {

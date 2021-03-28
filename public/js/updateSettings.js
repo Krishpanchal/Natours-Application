@@ -6,11 +6,10 @@ import { showAlert } from './alert';
 //If data contains password then type will be set to password
 
 export const updateUserSettings = async (data, type) => {
-  console.log('Data:- ', data);
   const url =
     type === 'password'
-      ? 'http://127.0.0.1:3000/api/v1/users/updateMyPassword'
-      : 'http://127.0.0.1:3000/api/v1/users/updateMe';
+      ? '/api/v1/users/updateMyPassword'
+      : '/api/v1/users/updateMe';
 
   try {
     const res = await axios({
@@ -23,7 +22,6 @@ export const updateUserSettings = async (data, type) => {
       showAlert('success', `${type.toUpperCase()} Updated Successfully`);
     }
   } catch (err) {
-    console.log(data);
     showAlert('error', err.response.data.message);
   }
 };

@@ -17904,14 +17904,13 @@ if (updateUserDataForm) {
               form.append('name', document.getElementById('name').value);
               form.append('email', document.getElementById('email').value);
               form.append('photo', document.getElementById('photo').files[0]);
-              console.log(form);
-              _context.next = 8;
+              _context.next = 7;
               return Object(_updateSettings__WEBPACK_IMPORTED_MODULE_6__["updateUserSettings"])(form, 'data');
 
-            case 8:
+            case 7:
               location.reload();
 
-            case 9:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -18040,7 +18039,7 @@ function _loginUser() {
             _context.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: 'POST',
-              url: 'http://127.0.0.1:3000/api/v1/users/login',
+              url: '/api/v1/users/login',
               data: {
                 email: email,
                 password: password
@@ -18088,7 +18087,7 @@ function _logoutUser() {
             _context2.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: 'GET',
-              url: 'http://127.0.0.1:3000/api/v1/users/logout'
+              url: '/api/v1/users/logout'
             });
 
           case 3:
@@ -18222,32 +18221,30 @@ var bookTour = /*#__PURE__*/function () {
             stripe = Stripe('pk_test_51HUTmpCFytkhuibCQh2Trlt81GwGxZMDGUqnymNfNjSn2baOQV27Fa6i03tUXI1hb6YbUpX0nfJEmjIMoQxAjkxU00PqLrX2DC');
             _context.prev = 1;
             _context.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_3___default()("http://127.0.0.1:3000/api/v1/bookings/checkout-session/".concat(tourId));
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()("/api/v1/bookings/checkout-session/".concat(tourId));
 
           case 4:
             session = _context.sent;
-            console.log(session); // 2) Create checkout form
-
-            _context.next = 8;
+            _context.next = 7;
             return stripe.redirectToCheckout({
               sessionId: session.data.session.id
             });
 
-          case 8:
-            _context.next = 13;
+          case 7:
+            _context.next = 12;
             break;
 
-          case 10:
-            _context.prev = 10;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](1);
             Object(_alert__WEBPACK_IMPORTED_MODULE_4__["showAlert"])('error', _context.t0);
 
-          case 13:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 10]]);
+    }, _callee, null, [[1, 9]]);
   }));
 
   return function bookTour(_x) {
@@ -18296,38 +18293,36 @@ var updateUserSettings = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log('Data:- ', data);
-            url = type === 'password' ? 'http://127.0.0.1:3000/api/v1/users/updateMyPassword' : 'http://127.0.0.1:3000/api/v1/users/updateMe';
-            _context.prev = 2;
-            _context.next = 5;
+            url = type === 'password' ? '/api/v1/users/updateMyPassword' : '/api/v1/users/updateMe';
+            _context.prev = 1;
+            _context.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: 'PATCH',
               url: url,
               data: data
             });
 
-          case 5:
+          case 4:
             res = _context.sent;
 
             if (res.data.status === 'success') {
               Object(_alert__WEBPACK_IMPORTED_MODULE_4__["showAlert"])('success', "".concat(type.toUpperCase(), " Updated Successfully"));
             }
 
-            _context.next = 13;
+            _context.next = 11;
             break;
 
-          case 9:
-            _context.prev = 9;
-            _context.t0 = _context["catch"](2);
-            console.log(data);
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](1);
             Object(_alert__WEBPACK_IMPORTED_MODULE_4__["showAlert"])('error', _context.t0.response.data.message);
 
-          case 13:
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[2, 9]]);
+    }, _callee, null, [[1, 8]]);
   }));
 
   return function updateUserSettings(_x, _x2) {
