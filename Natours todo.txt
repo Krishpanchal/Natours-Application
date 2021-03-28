@@ -1,0 +1,2 @@
+1) Signup
+2) When added images for tours remove previous images and add new one ( for memory storage efficieny )
