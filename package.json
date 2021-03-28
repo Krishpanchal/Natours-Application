@@ -4,7 +4,8 @@
   "description": "Nodejs Application",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "start:prod": "SET NODE_ENV=production & nodemon server.js",
     "build": "webpack --mode development --watch"
   },
@@ -58,5 +59,8 @@
     "prettier": "^2.2.1",
     "pug-loader": "^2.4.0",
     "regenerator-runtime": "^0.13.7"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }
