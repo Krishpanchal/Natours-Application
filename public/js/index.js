@@ -6,6 +6,7 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { updateUserSettings } from './updateSettings';
 import { bookTour } from './stripe';
+import { showAlert } from './alert';
 
 //DOM elements
 const mapBox = document.getElementById('map');
@@ -76,3 +77,6 @@ if (bookBtn) {
     await bookTour(tourId);
   });
 }
+
+const alertMessage = document.querySelector('body').dataset.alert;
+if (alertMessage) showAlert('success', alertMessage, 20);

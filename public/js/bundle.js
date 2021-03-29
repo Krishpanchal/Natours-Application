@@ -17820,10 +17820,11 @@ var hideAlert = function hideAlert() {
 }; // type is sucess or error
 
 var showAlert = function showAlert(type, msg) {
+  var time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 6;
   hideAlert();
   var markup = "<div class=\"alert alert--".concat(type, "\">").concat(msg, "</div>");
   document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
-  window.setTimeout(hideAlert, 3000);
+  window.setTimeout(hideAlert, time * 1000);
 };
 
 /***/ }),
@@ -17849,6 +17850,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_stable__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_stable__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _updateSettings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./updateSettings */ "./public/js/updateSettings.js");
 /* harmony import */ var _stripe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./stripe */ "./public/js/stripe.js");
+/* harmony import */ var _alert__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./alert */ "./public/js/alert.js");
 
 
 
@@ -17858,6 +17860,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 /* eslint-disable */
+
 
 
 
@@ -17990,6 +17993,9 @@ if (bookBtn) {
     };
   }());
 }
+
+var alertMessage = document.querySelector('body').dataset.alert;
+if (alertMessage) Object(_alert__WEBPACK_IMPORTED_MODULE_8__["showAlert"])('success', alertMessage, 20);
 
 /***/ }),
 
