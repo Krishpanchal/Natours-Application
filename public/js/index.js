@@ -2,6 +2,7 @@
 
 import { displayMap } from './mapbox';
 import { loginUser, logoutUser } from './login';
+import { signup } from './signup';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { updateUserSettings } from './updateSettings';
@@ -10,8 +11,12 @@ import { showAlert } from './alert';
 
 //DOM elements
 const mapBox = document.getElementById('map');
+
+const signupForm = document.querySelector('.form--signup');
+
 const loginForm = document.querySelector('.form--login');
 const logoutBtn = document.querySelector('.nav__el--logout');
+
 const updateUserDataForm = document.querySelector('.form-user-data');
 const updateUserPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
@@ -22,6 +27,21 @@ if (mapBox) {
   displayMap(locations);
 }
 
+// Signup
+if (signupForm) {
+  signupForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('passwordConfirm').value;
+
+    signup({ name, email, password, passwordConfirm });
+  });
+}
+
+//Login
 if (loginForm) {
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -35,6 +55,7 @@ if (logoutBtn) {
   logoutBtn.addEventListener('click', logoutUser);
 }
 
+//Update User Data
 if (updateUserDataForm) {
   updateUserDataForm.addEventListener('submit', async (e) => {
     e.preventDefault();

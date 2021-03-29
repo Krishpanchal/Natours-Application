@@ -17846,11 +17846,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _mapbox__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mapbox */ "./public/js/mapbox.js");
 /* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login */ "./public/js/login.js");
-/* harmony import */ var core_js_stable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/stable */ "./node_modules/core-js/stable/index.js");
-/* harmony import */ var core_js_stable__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_stable__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _updateSettings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./updateSettings */ "./public/js/updateSettings.js");
-/* harmony import */ var _stripe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./stripe */ "./public/js/stripe.js");
-/* harmony import */ var _alert__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./alert */ "./public/js/alert.js");
+/* harmony import */ var _signup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./signup */ "./public/js/signup.js");
+/* harmony import */ var core_js_stable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/stable */ "./node_modules/core-js/stable/index.js");
+/* harmony import */ var core_js_stable__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_stable__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _updateSettings__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./updateSettings */ "./public/js/updateSettings.js");
+/* harmony import */ var _stripe__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./stripe */ "./public/js/stripe.js");
+/* harmony import */ var _alert__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./alert */ "./public/js/alert.js");
 
 
 
@@ -17866,9 +17867,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
  //DOM elements
 
 var mapBox = document.getElementById('map');
+var signupForm = document.querySelector('.form--signup');
 var loginForm = document.querySelector('.form--login');
 var logoutBtn = document.querySelector('.nav__el--logout');
 var updateUserDataForm = document.querySelector('.form-user-data');
@@ -17878,7 +17881,25 @@ var bookBtn = document.getElementById('book-tour'); //Delegation
 if (mapBox) {
   var locations = JSON.parse(mapBox.dataset.locations);
   Object(_mapbox__WEBPACK_IMPORTED_MODULE_3__["displayMap"])(locations);
-}
+} // Signup
+
+
+if (signupForm) {
+  signupForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var passwordConfirm = document.getElementById('passwordConfirm').value;
+    Object(_signup__WEBPACK_IMPORTED_MODULE_5__["signup"])({
+      name: name,
+      email: email,
+      password: password,
+      passwordConfirm: passwordConfirm
+    });
+  });
+} //Login
+
 
 if (loginForm) {
   loginForm.addEventListener('submit', function (e) {
@@ -17891,7 +17912,8 @@ if (loginForm) {
 
 if (logoutBtn) {
   logoutBtn.addEventListener('click', _login__WEBPACK_IMPORTED_MODULE_4__["logoutUser"]);
-}
+} //Update User Data
+
 
 if (updateUserDataForm) {
   updateUserDataForm.addEventListener('submit', /*#__PURE__*/function () {
@@ -17908,7 +17930,7 @@ if (updateUserDataForm) {
               form.append('email', document.getElementById('email').value);
               form.append('photo', document.getElementById('photo').files[0]);
               _context.next = 7;
-              return Object(_updateSettings__WEBPACK_IMPORTED_MODULE_6__["updateUserSettings"])(form, 'data');
+              return Object(_updateSettings__WEBPACK_IMPORTED_MODULE_7__["updateUserSettings"])(form, 'data');
 
             case 7:
               location.reload();
@@ -17941,7 +17963,7 @@ if (updateUserPasswordForm) {
               passwordConfirm = document.getElementById('password-confirm').value;
               document.querySelector('.btn--save-password').textContent = 'Updating...';
               _context2.next = 7;
-              return Object(_updateSettings__WEBPACK_IMPORTED_MODULE_6__["updateUserSettings"])({
+              return Object(_updateSettings__WEBPACK_IMPORTED_MODULE_7__["updateUserSettings"])({
                 currentPassword: currentPassword,
                 newPassword: newPassword,
                 passwordConfirm: passwordConfirm
@@ -17978,7 +18000,7 @@ if (bookBtn) {
               e.target.textContent = 'Processing...';
               tourId = e.target.dataset.tourId;
               _context3.next = 4;
-              return Object(_stripe__WEBPACK_IMPORTED_MODULE_7__["bookTour"])(tourId);
+              return Object(_stripe__WEBPACK_IMPORTED_MODULE_8__["bookTour"])(tourId);
 
             case 4:
             case "end":
@@ -17995,7 +18017,7 @@ if (bookBtn) {
 }
 
 var alertMessage = document.querySelector('body').dataset.alert;
-if (alertMessage) Object(_alert__WEBPACK_IMPORTED_MODULE_8__["showAlert"])('success', alertMessage, 20);
+if (alertMessage) Object(_alert__WEBPACK_IMPORTED_MODULE_9__["showAlert"])('success', alertMessage, 20);
 
 /***/ }),
 
@@ -18184,6 +18206,82 @@ function displayMap(locations) {
     }
   });
 }
+
+/***/ }),
+
+/***/ "./public/js/signup.js":
+/*!*****************************!*\
+  !*** ./public/js/signup.js ***!
+  \*****************************/
+/*! exports provided: signup */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.promise */ "./node_modules/core-js/modules/es.promise.js");
+/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _alert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./alert */ "./public/js/alert.js");
+
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+/* eslint-disable */
+
+
+var signup = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(data) {
+    var res;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: 'POST',
+              url: '/api/v1/users/signup',
+              data: data
+            });
+
+          case 3:
+            res = _context.sent;
+
+            if (res.data.status === 'success') {
+              Object(_alert__WEBPACK_IMPORTED_MODULE_4__["showAlert"])('success', 'Account created successfully');
+              location.assign('/');
+            }
+
+            _context.next = 10;
+            break;
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            Object(_alert__WEBPACK_IMPORTED_MODULE_4__["showAlert"])('error', _context.t0.response.data.message);
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 7]]);
+  }));
+
+  return function signup(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
