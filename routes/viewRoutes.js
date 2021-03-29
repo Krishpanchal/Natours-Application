@@ -5,7 +5,7 @@ const viewController = require('../controllers/viewController');
 
 const router = express.Router();
 
-router.user(viewController.alerts);
+router.use(viewController.alerts);
 
 router.get('/', authController.isLoggedIn, viewController.getOverview);
 router.get('/tour/:slug', authController.isLoggedIn, viewController.getTour);
