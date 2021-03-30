@@ -6,6 +6,10 @@ The Project is named as [Natours](https://natours-krishpanchal.herokuapp.com/). 
 
 ### Features of Project
  * User Account Creation ( Signup / Login )
+ * User Account Deletion
+ * User Update Setting ( Personal Info, Update Passwords)
+ * Forgot Password --> Send reset Password Email
+ * Features enabled according to user catergoires ( Normal user, Tour guide, Lead gude, Admin )
  * Book Tours
  * Payment Integration ( Stripe )
  * Review booked Tours
