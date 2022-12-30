@@ -47,7 +47,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
 
   if (user) {
-    return next(new AppError('User with email already exists'));
+    return next(new AppError('User with email already exists', 400));
   }
 
   const newUser = await User.create({
@@ -204,7 +204,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   //Generate the random reset token
   const resetToken = user.createPasswordResetToken();
 
-  //Save the passwordToekns fields in the database
+  //Save the passwordTokens fields in the database
   await user.save({ validateBeforeSave: false });
 
   //Send it to the user's email
@@ -244,6 +244,10 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   //2)If the token not is not expired and there is a user, set the new password
   if (!user) {
     next(new AppError('Token is invalid or expired'));
+  }
+
+  if (!req.body.password) {
+    return next(new AppError('Please provide password'));
   }
 
   user.password = req.body.password;

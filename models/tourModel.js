@@ -12,7 +12,7 @@ const toursSchema = mongoose.Schema(
       trim: true,
       maxlength: [40, 'A tour name have less or euqal to 40 characters'],
       minlength: [10, 'A tour name have more or euqal to 10 characters'],
-      //Here isAlpha function is provided by validator packagae. And we sont need to call it as ti will be invoked when required
+      //Here isAlpha function is provided by validator packagae. And we dont need to call it as ti will be invoked when required
       // validate: [validator.isAlpha, 'Tour name must only contain characters'],
     },
     slug: String,

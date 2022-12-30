@@ -148,7 +148,7 @@ app.use(mongoSanitize());
 //Data sanitization against XSS
 app.use(xss());
 
-//Prevent Parameter Pollution
+//Prevent Parameter Pollution - used to remove duplicate parameters in querystring
 app.use(
   hpp({
     whitelist: [
@@ -181,7 +181,7 @@ app.use('/api/v1/bookings', bookingRouter);
 //Handling undefined routes
 app.all('*', (req, res, next) => {
   //next is used in a special way
-  //If the next () recieves an argument then express gets to know that there is an error
+  //If the next () recieves an argument, then express gets to know that there is an error
   //Here if argument given in next(), it will skip all the middlwares in the stack and will directly go to global error handling middleware
   next(new AppError(`Can't find ${req.originalUrl} on the server`, 404));
 });

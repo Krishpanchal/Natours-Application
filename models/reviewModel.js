@@ -54,7 +54,7 @@ reviewSchema.pre(/^find/, function (next) {
 });
 
 //Calculate the ratingAverage of a tour
-//Here will will use static method which points to the Model ( Review ) itself
+//Here we will use static method which points to the Model ( Review ) itself
 //We can call the function by Review.fun_name
 reviewSchema.statics.calcAverageRatings = async function (tourId) {
   //The function accpets tourId for getting the tour reviews

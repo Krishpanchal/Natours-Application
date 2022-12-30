@@ -19,10 +19,10 @@ const handleValidationErrorsDB = (err) => {
 };
 
 const handleJWTError = () =>
-  new AppError('Invalid token. Please Login again!', 401);
+  new AppError('Invalid token. Please try again!', 401);
 
 const handleJWTExpiredError = () =>
-  new AppError('Toue token expired. Please Login again!', 401);
+  new AppError('Toue token expired. Please try again!', 401);
 
 const sendErrorDev = (err, req, res) => {
   //A) API
@@ -86,8 +86,8 @@ const sendErrorProd = (err, req, res) => {
 };
 
 module.exports = (err, req, res, next) => {
-  //This is a express error handling middleware which 4 arguments ( err first function )
-  //So express automatically gets to know that is is a error handling middleware
+  //This is a express error handling middleware with 4 arguments ( err first function )
+  //So express automatically gets to know that it is a error handling middleware
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
 
