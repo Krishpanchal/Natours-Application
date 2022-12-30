@@ -8,7 +8,7 @@
     "dev": "nodemon server.js",
     "start:prod": "SET NODE_ENV=production & nodemon server.js",
     "watch": "webpack --mode development --watch",
-    "build": "npm install && webpack --mode development --build"
+    "build": "npm install"
   },
   "author": "Krish Panchal",
   "license": "ISC",
